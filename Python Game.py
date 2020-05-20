@@ -12,13 +12,20 @@ pygame.display.set_icon(gameIcon)
 title = pygame.image.load("title.png")
 config_image = pygame.image.load("config.png")
 difficulty_image = pygame.image.load("difficulty_image.png")
+colors_image = pygame.image.load("colors.png")
+stats_image = pygame.image.load("stats_image.png")
 deathsound = pygame.mixer.Sound("deathsound.wav")
+deathsound.set_volume(0.2)
 menuback = pygame.mixer.Sound("menuback.wav")
+menuback.set_volume(0.2)
 menuin = pygame.mixer.Sound("menuin.wav")
+menuin.set_volume(0.2)
 menuin2 = pygame.mixer.Sound("menuin2.wav")
+menuin2.set_volume(0.2)
 scoresound = pygame.mixer.Sound("scoresound.wav")
+scoresound.set_volume(0.2)
 font = pygame.font.SysFont('segoeuisemibold', 20)
-font2 = pygame.font.SysFont(None, 30)
+font2 = pygame.font.SysFont(None, 37)
 game_difficulty=15
 random_c=False
 high_score=0
@@ -155,7 +162,7 @@ def config():
         gameDisplay.fill(dark_grey)
         gameDisplay.blit(config_image, (3,0))
         button("DIFFICULTY",200,210,120,50,black,grey)
-        button("COLOR",200,285,120,50,black,grey)
+        button("COLORS",200,285,120,50,black,grey)
         button("BACK",200,360,120,50,black,bright_red)
 
         fps.tick(30)
@@ -203,7 +210,7 @@ def difficulty():
                 config()
 
         gameDisplay.fill(dark_grey)
-        gameDisplay.blit(difficulty_image, (3,-20))
+        gameDisplay.blit(difficulty_image, (5,-20))
         button("Easy",200,170,120,50,black,grey)
         button("Normal",200,245,120,50,black,grey)
         button("HARD",200,320,120,50,black,grey)
@@ -282,6 +289,7 @@ def color():
                 random_c=True 
 
             gameDisplay.fill(dark_grey)
+            gameDisplay.blit(colors_image, (5,-60))
             button("Default",200,115,120,50,black,grey)
             pygame.draw.rect(gameDisplay,python_color,(320,115,10,50))
             if record_score>=25:            
@@ -401,17 +409,18 @@ def stats():
                 reset=True
 
             gameDisplay.fill(dark_grey)
+            gameDisplay.blit(stats_image, (20,0))
             button("Back",410,460,85,35,dark_grey,red)
             button("Reset Stats",15,460,110,35,dark_grey,red)
             f.read(int(record_score))
             record = font2.render("Record Score: " + str(record_score), 1, white)
-            gameDisplay.blit(record, (180,210))
+            gameDisplay.blit(record, (160,220))
             r.read(int(total_apple))
             total_apple_stat = font2.render("Total apple eaten: " + str(total_apple), 1, white)
-            gameDisplay.blit(total_apple_stat, (160,260))
+            gameDisplay.blit(total_apple_stat, (140,280))
             v.read(int(total_deaths))
             total_death_stat = font2.render("Total deaths: "+str(total_deaths),1, white)
-            gameDisplay.blit(total_death_stat, (180,310))
+            gameDisplay.blit(total_death_stat, (170,340))
  
             fps.tick(30)
             pygame.display.update()
